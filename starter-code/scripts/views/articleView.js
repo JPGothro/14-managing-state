@@ -13,6 +13,7 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  // It populates the filters in the handlebars section by creating unique lists of author names and categories. It's execution path is from aticlaeView.index.
   articleView.populateFilters = function() {
     var options,
       template = Handlebars.compile($('#option-template').text());
@@ -38,10 +39,12 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  // This method handles the change event from either filter in order to display the clients perferred choice. This is called at articleView.index.
   articleView.handleFilters = function() {
     $('#filters').one('change', 'select', function() {
       var resource = this.id.replace('-filter', '');
-      page('/' + resource + '/' + $(this).val().replace(/\W+/g, '+')); // Replace any/all whitespace with a +
+      page('/' + resource + '/' + $(this).val().replace(/\W+/g, '+'));
+      // Replace any/all whitespace with a +
     });
   };
 
@@ -82,6 +85,7 @@
   };
 
   // COMMENT: What does this method do?  What is it's execution path?
+  // This method populates the DOM with articles. Then calls populateFilters and handleFilters. It also handles the teasers logic at the end. It is called with articlesController.
   articleView.index = function(articles) {
     $('#articles').show().siblings().hide();
 
